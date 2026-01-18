@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Tênis Shop pelotas</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Fonte -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* ====================  Reset & Basics  ==================== */
+        *{margin:0;padding:0;box-sizing:border-box;}
+        html{font-size:100%;scroll-behavior:smooth;}
+        body{
+            font-family:'Montserrat',sans-serif;
+            line-height:1.5;
+            color:#333;
+            background:#fff;
+        }
+
+        /* ====================  Paleta  ==================== */
+        :root{
+            --c-primary:#007bff;          /* azul WhatsApp */
+            --c-bg:#f9f9f9;
+            --c-card:#fff;
+            --c-gray:#777;
+            --c-success:#28a745;
+        }
+        a{color:var(--c-primary);text-decoration:none;}
+        img{max-width:100%;display:block;}
+        button,.btn{
+            display:inline-block;
+            padding:.75rem 1.25rem;
+            font-weight:600;
+            border:none;
+            cursor:pointer;
+            border-radius:4px;
+            transition:background .2s;
+        }
+        .btn-primary{
+            background:var(--c-primary);
+            color:#fff;
+        }
+        .btn-primary:hover{background:#0062cc;}
+
+        /* ====================  Layout – Container  ==================== */
+        .container{
+            width:90%;
+            max-width:1200px;
+            margin:0 auto;
+            padding:2rem 0;
+        }
+
+        /* ====================  HERO  ==================== */
+        .hero{
+            background:url('image-5.jpg') center/cover no-repeat;
+            color:#fff;
+            text-align:center;
+            padding:4rem 1rem;
+            position:relative;
+        }
+        .hero::after{
+            content:"";
+            position:absolute;
+            inset:0;
+            background:rgba(0,0,0,.5);
+            z-index:-1;
+        }
+        .hero h1{font-size:2rem;margin-bottom:.5rem;}
+        .hero p{font-size:1.125rem;margin-bottom:1.5rem;}
+        .selo{
+            display:inline-flex;
+            align-items:center;
+            background:#fff;
+            color:#333;
+            padding:.3rem .8rem;
+            border-radius:20px;
+            font-size:.85rem;
+            margin:.3rem;
+        }
+        .selo img{height:1rem;margin-right:.4rem;}
+        .selo-list{margin-top:1rem;display:flex;justify-content:center;flex-wrap:wrap;}
+
+        /* ====================  GALERIA  ==================== */
+        .gallery{
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+            gap:1.5rem;
+        }
+        .card{
+            background:var(--c-card);
+            border-radius:8px;
+            box-shadow:0 2px 8px rgba(0,0,0,.1);
+            overflow:hidden;
+            text-align:center;
+            padding:1rem;
+        }
+        .card h3{margin:.8rem 0 .4rem;font-size:1.2rem;}
+        .card .price{font-size:1.1rem;color:var(--c-primary);margin:.5rem 0;}
+
+        /* ====================  DEPOIMENTOS  ==================== */
+        .testimonials{
+            position:relative;
+            overflow:hidden;
+        }
+        .testimonial{
+            background:var(--c-card);
+            border-radius:8px;
+            padding:1.2rem;
+            margin:0 .5rem;
+            box-shadow:0 2px 6px rgba(0,0,0,.08);
+            text-align:center;
+        }
+        .testimonial img{
+            width:64px;height:64px;
+            border-radius:50%;
+            object-fit:cover;
+            margin-bottom:.8rem;
+        }
+        .stars{color:#ffb400;margin:.4rem 0;}
+        .testimonial p{font-size:.95rem;margin:.4rem 0;}
+
+        /* Carousel simples – auto‑scroll via CSS */
+        @keyframes slide{
+            0%    { transform: translateX(0%); }
+  27%   { transform: translateX(0%); }     /* pausa no 1º */
+  33%   { transform: translateX(-63.33%); }
+  43%   { transform: translateX(-73.33%); }
+  43%   { transform: translateX(-73.33%); }
+  43%   { transform: translateX(93%.33); }     /* pausa no 2º */
+  100%  { transform: translateX(0%); }      /* volta suave pro início */
+        }
+        .carousel{
+            display:flex;
+            width:300%;               /* 3 items */
+            animation: slide 19s infinite ease-in-out;
+        }
+        .carousel:hover{animation-play-state:paused;}
+
+        /* ====================  ENTREGA EXPRESSA  ==================== */
+        .delivery{
+            background:var(--c-bg);
+            padding:2rem 1rem;
+            text-align:center;
+        }
+        .delivery h2{margin-bottom:1rem;}
+        .delivery .icons{
+            display:flex;
+            justify-content:center;
+            gap:2rem;
+            flex-wrap:wrap;
+            margin:1.5rem 0;
+        }
+        .delivery .icons div{
+            display:flex;
+            flex-direction:column;
+            align-items:center;
+        }
+        .delivery .icons img{width:48px;height:48px;margin-bottom:.5rem;}
+
+        /* ====================  FAQ  ==================== */
+        .faq section{border-top:1px solid #ddd;}
+        .faq summary{
+            cursor:pointer;
+            padding:.8rem 0;
+            font-weight:600;
+            position:relative;
+        }
+        .faq summary::after{
+            content:"▾";
+            position:absolute;
+            right:0;
+            transition:transform .2s;
+        }
+        .faq details[open] summary::after{transform:rotate(180deg);}
+        .faq p{
+            padding:.5rem 0 1rem;
+            color:var(--c-gray);
+        }
+
+        /* ====================  PRIVACIDADE  ==================== */
+        .privacy{
+            background:#f1f1f1;
+            padding:1.5rem;
+            font-size:.9rem;
+            text-align:center;
+        }
+        .privacy a{color:var(--c-primary);font-weight:600;}
+
+        /* ====================  FOOTER  ==================== */
+        footer{
+            background:#222;
+            color:#ccc;
+            padding:2rem 0;
+        }
+        footer .footer-links{
+            display:flex;
+            flex-wrap:wrap;
+            justify-content:center;
+            gap:1rem;
+            margin-bottom:1rem;
+        }
+        footer a{color:#ccc;}
+        footer .social{
+            display:flex;
+            gap:.8rem;
+            justify-content:center;
+        }
+        footer .social a img{width:24px;height:24px;}
+
+        /* ====================  WHATSAPP FIXED BUTTON  ==================== */
+        .whatsapp-float{
+            position:fixed;
+            bottom:20px;
+            right:20px;
+            z-index:1000;
+        }
+        .whatsapp-float a{
+            background:#25D366;
+            color:#fff;
+            width:56px;height:56px;
+            border-radius:50%;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            box-shadow:0 2px 6px rgba(0,0,0,.3);
+            font-size:1.5rem;
+        }
+
+        @media(min-width:768px){
+            .hero h1{font-size:2.5rem;}
+            .hero p{font-size:1.25rem;}
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- ==================== HERO ==================== -->
+<section class="hero" id="hero">
+    <div class="container">
+        <h1>Escolha o seu estilo – 3 modelos de tênis, 1 preço especial!</h1>
+        <p>Conforto, qualidade e entrega expressa em Pelotas‑RS.</p>
+        <a class="btn btn-primary"
+           href="https://wa.me/555391911057?text=Quero%20comprar%20os%20t%C3%AAnis"
+           target="_blank">COMPRAR AGORA VIA WHATSAPP</a>
+
+        <div class="selo-list">
+            <div class="selo"><img src="image-3.jpg"/>Entrega Expressa</div>
+            <div class="selo"><img src="https://img.icons8.com/ios-filled/50/000000/checked.png"/>Garantia de Satisfação</div>
+            <div class="selo"><img src="https://img.icons8.com/ios-filled/50/000000/free-shipping.png"/>Frete Grátis para Pelotas‑RS</div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== GALERIA ==================== -->
+<section class="container" id="galeria">
+    <h2 style="text-align:center;margin-bottom:1.5rem;">Nossos Modelos</h2>
+    <div class="gallery">
+        <!-- Card 1 -->
+        <div class="card">
+            <img src="image-1.jpg" alt="Tênis modelo 1"/>
+            <h3>Modelo A</h3>
+            <p>Couro sintético + solado em EVA.</p>
+            <div class="price">R$ 65,00</div>
+            <a class="btn btn-primary"
+               href="https://wa.me/555391911057?text=Quero%20comprar%20o%20Modelo%20A"
+               target="_blank">Comprar no WhatsApp</a>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="card">
+            <img src="image-2.jpg" alt="Tênis modelo 2"/>
+            <h3>Modelo B</h3>
+            <p>Malha respirável + tecnologia anti‑odor.</p>
+            <div class="price">R$ 65,00</div>
+            <a class="btn btn-primary"
+               href="https://wa.me/555391911057?text=Quero%20comprar%20o%20Modelo%20B"
+               target="_blank">Comprar no WhatsApp</a>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="card">
+            <img src="image-6.jpg" alt="Tênis modelo 3"/>
+            <h3>Modelo C</h3>
+            <p>Textura suede + amortecimento gel.</p>
+            <div class="price">R$ 65,00</div>
+            <a class="btn btn-primary"
+               href="https://wa.me/555391911057?text=Quero%20comprar%20o%20Modelo%20C"
+               target="_blank">Comprar no WhatsApp</a>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== DEPOIMENTOS ==================== -->
+<section class="container" id="depoimentos" style="margin-top:3rem;">
+    <h2 style="text-align:center;margin-bottom:1.5rem;">O que nossos clientes dizem</h2>
+
+    <div class="testimonials">
+        <div class="carousel">
+            <!-- Depoimento 1 -->
+            <div class="testimonial">
+                <img src="lead-1.jpg" alt="Cliente 1"/>
+                <div class="stars">★★★★★</div>
+                <p><strong>Mariana – Pelotas</strong></p>
+                <p>Conforto incrível e a entrega chegou em 12 h! <em>Melhor compra que já fiz!</em></p>
+            </div>
+
+            <!-- Depoimento 2 -->
+            <div class="testimonial">
+                <img src="lead-2.jpg" alt="Cliente 2"/>
+                <div class="stars">★★★★☆</div>
+                <p><strong>Rafael – Pelotas</strong></p>
+                <p>Ótimo custo‑benefício, design moderno e o suporte foi super rápido.</p>
+            </div>
+
+            <!-- Depoimento 3 -->
+            <div class="testimonial">
+                <img src="lead-3.jpg" alt="Cliente 3"/>
+                <div class="stars">★★★★★</div>
+                <p><strong>Claudia – Pelotas</strong></p>
+                <p>Adorei a qualidade do material. O WhatsApp facilitou tudo.</p>
+            </div>
+            <!-- Depoimento 8 -->
+            <div class="testimonial">
+                <img src="lead-4.jpg" alt="Cliente 3"/>
+                <div class="stars">★★★★★</div>
+                <p><strong>Henry ponces – Pelotas</strong></p>
+                <p>Gostei muito do tênis, são bem confortável, o tamanho acertaram, veio pequeno e nem tão grande, veio tamanho que escolhi.</p>
+            </div>
+            <!-- Depoimento 4 -->
+            <div class="testimonial">
+                <img src="lead-5.jpg" alt="Cliente 3"/>
+                <div class="stars">★★★★★</div>
+                <p><strong>Odete – Pelotas</strong></p>
+                <p>Ótima qualidade entrega bem rápida.</p>
+            </div>
+            <!-- Depoimento 5 -->
+            <div class="testimonial">
+                <img src="lead-6.jpg" alt="Cliente 3"/>
+                <div class="stars">★★★★★</div>
+                <p><strong>Wanessa – Pelotas</strong></p>
+                <p>Muito bom os tênis super recomendo podem comprar chegou antes do prazo gostei da minha compra.</p>
+            </div>
+            <!-- Depoimento 6 -->
+            <div class="testimonial">
+                <img src="lead-7.jpg" alt="Cliente 3"/>
+                <div class="stars">★★★★★</div>
+                <p><strong>Bernado – Pelotas</strong></p>
+                <p>Chegou antes do prazo, bem protegido, chegou sem avarias. Tá na medida</p>
+            </div>
+            <!-- Depoimento 7 -->
+            <div class="testimonial">
+                <img src="lead-8.jpg" alt="Cliente 3"/>
+                <div class="stars">★★★★★</div>
+                <p><strong>Juliana – Pelotas</strong></p>
+                <p>Muito bom encaixa certinho super confortável top</p>
+            </div>
+            
+        </div>
+    </div>
+</section>
+
+<!-- ==================== ENTREGA EXPRESSA ==================== -->
+<section class="delivery" id="entrega">
+    <div class="container">
+        <h2>Entrega Expressa em Pelotas‑RS – Receba em até 24 h</h2>
+        <p>Parceiros locais garantem rastreamento em tempo real e prazo ideal para quem não quer esperar.</p>
+
+        <div class="icons">
+            <div>
+                <img src="https://img.icons8.com/ios-filled/50/000000/free-shipping.png" alt="Caminhão"/>
+                <span>Logística própria</span>
+            </div>
+            <div>
+                <img src="image-3.jpg" alt="Relógio"/>
+                <span>Prazo de até 24 h</span>
+            </div>
+            <div>
+                <img src="image-4.jpg" alt="Mapa"/>
+                <span>Entrega em Pelotas‑RS</span>
+            </div>
+        </div>
+
+        <a class="btn btn-primary" href="#faq">Veja como funciona</a>
+    </div>
+</section>
+
+<!-- ==================== FAQ ==================== -->
+<section id="faq" class="container faq" style="margin-top:2rem;">
+    <h2 style="text-align:center;margin-bottom:1.5rem;">Perguntas Frequentes</h2>
+
+    <details open>
+        <summary>Qual o prazo de entrega?</summary>
+        <p>Entregamos em até 24 horas para endereços em Pelotas‑RS.</p>
+    </details>
+
+    <details>
+        <summary>Como faço o pagamento?</summary>
+        <p>PIX, cartão ou dinheiro na entrega – pagamento direto via WhatsApp.</p>
+    </details>
+
+    <details>
+        <summary>Qual a política de troca?</summary>
+        <p>Troca em até 7 dias úteis, sem custo, mediante devolução do produto.</p>
+    </details>
+
+    <details>
+        <summary>Os tênis são originais?</summary>
+        <p>Sim, 100 % original, com garantia do fabricante.</p>
+    </details>
+
+    <details>
+        <summary>Posso escolher o tamanho?</summary>
+        <p>Sim, informe o número desejado ao iniciar a conversa no WhatsApp.</p>
+    </details>
+</section>
+
+<!-- ==================== POLÍTICA DE PRIVACIDADE ==================== -->
+<section class="privacy" id="privacy">
+    <p>Seus dados (telefone) são usados apenas para contato de vendas e não são compartilhados com terceiros.
+    <a href="#" target="_blank">Leia a política completa</a>. Conformidade LGPD.</p>
+</section>
+
+<!-- ==================== FOOTER ==================== -->
+<footer>
+    <div class="container">
+        <div class="footer-links">
+            <a href="#hero">Hero</a>
+            <a href="#galeria">Galeria</a>
+            <a href="#depoimentos">Depoimentos</a>
+            <a href="#faq">FAQ</a>
+            <a href="#privacy">Política de Privacidade</a>
+        </div>
+
+        <div class="social">
+            <a href="tel:+555391911057"><img src="https://img.icons8.com/ios-filled/50/ffffff/phone.png" alt="Telefone"/></a>
+        </div>
+
+        <p style="margin-top:1rem;font-size:.85rem;">© 2026 Sua Marca – Todos os direitos reservados.</p>
+    </div>
+</footer>
+
+<!-- ==================== WHATSAPP FLOATING BUTTON ==================== -->
+<div class="whatsapp-float">
+    <a href="https://wa.me/555391911057?text=Oi%20gostaria%20de%20saber%20mais%20sobre%20os%20t%C3%AAnis"
+       target="_blank" aria-label="WhatsApp">
+        <svg style="width:28px;height:28px" viewBox="0 0 24 24"><path fill="currentColor" d="M20.52 3.48A12 12 0 0 0 4.5 19.14l-2.44 6.58 6.73-2.24a12 12 0 0 0 11.73-19.99M12 15.9c-2.14 0-3.85-1.71-3.85-3.85s1.71-3.86 3.85-3.86 3.85 1.71 3.85 3.86-1.71 3.85-3.85 3.85Z"/></svg>
+    </a>
+</div>
+
+</body>
+</html>
